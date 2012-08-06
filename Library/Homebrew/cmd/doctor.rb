@@ -249,6 +249,8 @@ def check_cc
     if MacOS::Xcode.version >= "4.3"
       return <<-EOS.undent
         Experimental support for using Xcode without the "Command Line Tools".
+        You have only installed Xcode. If stuff is not building, try installing the
+        "Command Line Tools for Xcode" package.
       EOS
     else
       return <<-EOS.undent
@@ -783,7 +785,7 @@ def check_git_status
     unless `git status -s -- Library/Homebrew/ 2>/dev/null`.chomp.empty? then <<-EOS.undent
       You have uncommitted modifications to Homebrew's core.
       Unless you know what you are doing, you should run:
-        cd #{HOMEBREW_REPOSITORY} && git reset --hard
+        cd #{HOMEBREW_REPOSITORY}/Library && git reset --hard && git clean -f
       EOS
     end
   end
