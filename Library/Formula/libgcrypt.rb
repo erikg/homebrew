@@ -17,11 +17,11 @@ class Libgcrypt < Formula
   def cflags
     cflags = "#{ENV['CFLAGS']}"
     cflags += '-std=gnu89 -fheinous-gnu-extensions' if ENV.compiler == :clang
-    cflags  
+    cflags
   end
 
   def install
-    ENV.universal_binary # build fat so wine can use it
+    ENV.universal_binary
 
     system "./configure", "--disable-dependency-tracking",
                           "--prefix=#{prefix}",
